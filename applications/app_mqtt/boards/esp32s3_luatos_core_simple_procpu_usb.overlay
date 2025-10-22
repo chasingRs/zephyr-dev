@@ -1,0 +1,32 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#include <zephyr/dt-bindings/pwm/pwm.h>
+
+/ {
+	aliases {
+		ambient-temp0 = &bmp280;
+	};
+
+	gpio_leds {
+		compatible = "gpio-leds";
+		led_blue0: led_gpio0_10 {
+			label = "LED0";
+			gpios = <&gpio0 10 GPIO_ACTIVE_HIGH>;
+		};
+
+		led_blue1: led_gpio0_11 {
+			label = "LED1";
+			gpios = <&gpio0 11 GPIO_ACTIVE_HIGH>;
+		};
+	};
+};
+
+&i2c0 {
+	status = "okay";
+	bmp280: bme280@77 {
+		compatible = "bosch,bme280";
+		reg = <0x77>;
+	};
+};

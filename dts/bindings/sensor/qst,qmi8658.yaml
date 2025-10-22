@@ -1,0 +1,80 @@
+title: "QST QMI8658 Motion Tracking Device"
+description: qmi8658 motion tracking device
+
+compatible: "qst,qmi8658"
+
+include: [i2c-device.yaml, "sensor-device.yaml"]
+
+properties:
+  int-gpios:
+    type: phandle-array
+    description: |
+      The INT signal default configuration is active-high. The
+      property value should ensure the flags properly describe the
+      signal that is presented to the driver.
+
+  accel-hz:
+    type: int
+    required: true
+    description: |
+      Default frequency of accelerometer. (Unit - Hz)
+      Maps to ACCEL_ODR field in ACCEL_CONFIG0 setting
+      Power-on reset value is 1000.
+    enum:
+      - 25
+      - 50
+      - 100
+      - 200
+      - 500
+      - 1000
+      - 2000
+      - 4000
+      - 8000
+
+  gyro-hz:
+    type: int
+    required: true
+    description: |
+      Default frequency of gyroscope. (Unit - Hz)
+      Maps to GYRO_ODR field in GYRO_CONFIG0 setting
+      Power-on reset value is 1000.
+    enum:
+      - 25
+      - 50
+      - 100
+      - 200
+      - 500
+      - 1000
+      - 2000
+      - 4000
+      - 8000
+
+  accel-fs:
+    type: int
+    required: true
+    description: |
+      Default full scale of accelerometer. (Unit - g)
+      Maps to ACCEL_FS_SEL field in ACCEL_CONFIG0 setting
+      Power-on reset value is 16
+    enum:
+      - 16
+      - 8
+      - 4
+      - 2
+
+  gyro-fs:
+    type: int
+    required: true
+    description: |
+      Default full scale of gyroscope. (Unit - DPS)
+      Maps to GYRO_FS_SEL field in GYRO_CONFIG0 setting
+      Power-on reset value is 2000
+    enum:
+      - 2048
+      - 1024
+      - 512
+      - 256
+      - 128
+      - 64
+      - 32
+      - 16

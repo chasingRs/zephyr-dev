@@ -1,0 +1,57 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#include <zephyr/dt-bindings/pwm/pwm.h>
+
+/ {
+	aliases {
+		pwm-0 = &ledc0;
+		pwm-led0 = &pwm_led_blue0;
+		pwm-led1 = &pwm_led_blue1;
+	};
+
+	pwmleds {
+		compatible = "pwm-leds";
+		pwm_led_blue0: pwm_led_gpio0_10 {
+			label = "PWM LED0";
+			pwms = <&ledc0 0 1000 PWM_POLARITY_NORMAL>;
+		};
+
+		pwm_led_blue1: pwm_led_gpio0_11 {
+			label = "PWM LED1";
+			pwms = <&ledc0 1 1000 PWM_POLARITY_NORMAL>;
+		};
+	};
+
+	blink_led: blink-led {
+		compatible = "blink-gpio-led";
+		led-gpios = <&gpio0 10 GPIO_ACTIVE_HIGH>;
+		blink-period-ms = <1000>;
+	};
+};
+
+&pinctrl {
+	ledc0_default: ledc0_default {
+		group1 {
+			pinmux = <LEDC_CH0_GPIO10 LEDC_CH1_GPIO11>;
+			output-enable;
+		};
+	};
+};
+
+&ledc0 {
+	pinctrl-0 = <&ledc0_default>;
+	pinctrl-names = "default";
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+	channel0@0 {
+		reg = <0x0>;
+		timer = <0>;
+	};
+	channel1@1 {
+		reg = <0x1>;
+		timer = <0>;
+	};
+};

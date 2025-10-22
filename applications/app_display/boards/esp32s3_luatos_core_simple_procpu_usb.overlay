@@ -1,0 +1,36 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#include <zephyr/dt-bindings/pwm/pwm.h>
+
+/ {
+	chosen {
+		zephyr,display = &ssd1306_128x64;
+	};
+
+	aliases {
+		sw0 = &button0;
+	};
+};
+
+&i2c0 {
+	status = "okay";
+	pinctrl-0=<&i2c0_default>;
+	pinctrl-names = "default";
+
+	ssd1306_128x64: ssd1306@3c {
+		compatible = "solomon,ssd1306fb";
+		reg = <0x3c>;
+		width = <128>;
+		height = <64>;
+		segment-offset = <0>;
+		page-offset = <0>;
+		display-offset = <0>;
+		multiplex-ratio = <63>;
+		segment-remap;
+		com-invdir;
+		prechargep = <0x22>;
+		inversion-on;
+	};
+};

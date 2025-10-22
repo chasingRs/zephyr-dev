@@ -1,0 +1,11 @@
+board:
+  name: esp32s3_lckfb
+  full_name: ESP32S3-Lckfb
+  vendor: luatos
+  socs:
+    - name: esp32s3
+      variants:
+        - name: usb
+          cpucluster: procpu
+        - name: usb
+          cpucluster: appcpu

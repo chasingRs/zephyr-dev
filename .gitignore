@@ -2,12 +2,13 @@
 .vscode
 *.swp
 *~
+**/.idea
 
 # python
 .venv
 
 # build
-/build*
+**/build*
 /twister-out*
 
 __pycache__/

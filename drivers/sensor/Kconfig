@@ -3,4 +3,5 @@
 
 if SENSOR
 rsource "example_sensor/Kconfig"
+rsource "qmi8658/Kconfig"
 endif # SENSOR
