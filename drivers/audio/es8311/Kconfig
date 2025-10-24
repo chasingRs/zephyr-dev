@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: Apache-2.0
+#
+# ES8311 Audio Codec configuration options
+
+config ES8311
+	bool "ES8311 Audio Codec"
+	default y
+	select I2C
+	depends on DT_HAS_EVEREST_ES8311_ENABLED
+	help
+	  Enable support for the Everest Semiconductor ES8311 audio codec.
+	  This is a low power mono audio codec with integrated headphone
+	  amplifier.
+
+if ES8311
+
+config ES8311_INIT_PRIORITY
+	int "ES8311 initialization priority"
+	default 80
+	help
+	  ES8311 device driver initialization priority. The priority must be
+	  lower than I2C_INIT_PRIORITY.
+
+endif # ES8311
+

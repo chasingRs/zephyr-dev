@@ -1,0 +1,34 @@
+description: Everest ES8311 Audio Codec
+
+compatible: "everest,es8311"
+
+include: [i2c-device.yaml]
+
+properties:
+  "#address-cells":
+    const: 1
+
+  "#size-cells":
+    const: 0
+
+  clocks:
+    required: false
+    description: |
+      Optional clock controller for MCLK. If provided, the driver will
+      query the clock rate. If not provided, MCLK frequency must be
+      specified via mclk-frequency property or BCLK will be used as
+      internal MCLK in consumer mode.
+
+  clock-names:
+    description: |
+      Should be "mclk" if clocks property is used.
+
+  mclk-frequency:
+    type: int
+    required: false
+    description: |
+      Master clock (MCLK) frequency in Hz. Use this if MCLK is provided
+      by an I2S controller or external oscillator that doesn't have a
+      clock controller driver. Common values are 11289600, 12288000,
+      18432000, or 24576000 Hz.
+

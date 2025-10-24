@@ -8,17 +8,7 @@ static inline int qmi8658_bus_check_i2c(const union qmi8658_bus *bus) {
 
 static inline int qmi8658_reg_read_i2c(const union qmi8658_bus *bus, const uint16_t reg, uint8_t *data,
                                        const size_t size) {
-    int ret = 0;
-    for (size_t i = 0; i < size; i++) {
-        uint8_t addr = reg + i;
-
-        ret = i2c_reg_read_byte_dt(&bus->i2c, addr, &data[i]);
-
-        if (ret) {
-            return ret;
-        }
-    }
-    return ret;
+    return i2c_write_read_dt(&bus->i2c, &reg, 1, data, size);
 }
 
 static inline int qmi8658_reg_write_i2c(const union qmi8658_bus *bus, const uint16_t reg, const uint8_t data) {

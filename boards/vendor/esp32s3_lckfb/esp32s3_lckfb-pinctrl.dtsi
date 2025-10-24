@@ -24,7 +24,7 @@
 	i2c0_default: i2c0_default {
 		group1 {
 			pinmux = <I2C0_SDA_GPIO1>,
-				 <I2C0_SCL_GPIO2>;
+					 <I2C0_SCL_GPIO2>;
 			bias-pull-up;
 			drive-open-drain;
 			output-high;
@@ -34,17 +34,27 @@
 	i2c1_default: i2c1_default {
 		group1 {
 			pinmux = <I2C1_SDA_GPIO4>,
-				 <I2C1_SCL_GPIO5>;
+					 <I2C1_SCL_GPIO5>;
 			bias-pull-up;
 			drive-open-drain;
 			output-high;
 		};
 	};
 
+	i2s0_default: i2s0_default {
+		group1 {
+			pinmux = <I2S0_MCLK_GPIO38>,   /* Master clock (if using I2S MCLK out) */
+					 <I2S0_O_BCK_GPIO14>,   /* Bit clock */
+					 <I2S0_O_WS_GPIO13>,     /* Word select / frame sync */
+					 <I2S0_I_SD_GPIO12>,    /* Data in (from codec to MCU) */
+					 <I2S0_O_SD_GPIO45>;   /* Data out (from MCU to codec) */
+		};
+	};
+
 	spim2_default: spim2_default {
 		group1 {
 			pinmux = <SPIM2_SCLK_GPIO41>,
-					<SPIM2_CSEL_GPIO10>;
+					 <SPIM2_CSEL_GPIO10>;
 		};
 
 		group2 {
@@ -56,8 +66,8 @@
 	spim3_default: spim3_default {
 		group1 {
 			pinmux = <SPIM3_MISO_GPIO37>,
-				 <SPIM3_SCLK_GPIO36>,
-				 <SPIM3_CSEL_GPIO38>;
+					 <SPIM3_SCLK_GPIO36>,
+					 <SPIM3_CSEL_GPIO38>;
 		};
 
 		group2 {
@@ -69,7 +79,7 @@
 	twai_default: twai_default {
 		group1 {
 			pinmux = <TWAI_TX_GPIO5>,
-				 <TWAI_RX_GPIO6>;
+					 <TWAI_RX_GPIO6>;
 		};
 	};
 };

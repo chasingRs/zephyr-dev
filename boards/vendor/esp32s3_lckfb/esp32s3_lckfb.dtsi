@@ -28,6 +28,7 @@
 
 	aliases {
 		pwm-led-bk = &pwm_led_backlight;
+		i2s-txrx = &i2s0;
 	};
 
 	mipi_dbi_st7789v {
@@ -72,6 +73,11 @@
 			label = "PWM LED0";
 			pwms = <&ledc0 0 1000 PWM_POLARITY_INVERTED>;
 		};
+	};
+
+	speaker_en: load_switch {
+		compatible = "power-switch";
+		gpios = <&pca9557 1 GPIO_ACTIVE_HIGH>;
 	};
 };
 
@@ -134,6 +140,23 @@
 		accel-fs = <8>;
 		gyro-fs = <1024>;
 	};
+
+	es8311: es8311@18 {
+		compatible = "everest,es8311";
+		reg = <0x18>;
+		status = "okay";
+		mclk-frequency = <12288000>;
+	};
+};
+
+&i2s0 {
+	status = "okay";
+	pinctrl-0 = <&i2s0_default>;
+	pinctrl-names = "default";
+};
+
+&dma {
+	status = "okay";
 };
 
 &i2c1 {
